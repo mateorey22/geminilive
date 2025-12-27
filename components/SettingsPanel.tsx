@@ -21,6 +21,7 @@ export interface McpServer {
 }
 
 export interface AppSettings {
+  apiKey: string;
   voice: string;
   emotion: boolean;
   connections: Connection[];
@@ -113,7 +114,9 @@ const TestModal: React.FC<{
               clearTimeout(timeout);
               const base = new URL(mcpServer.url, window.location.href);
               let postUrl = new URL(event.data, base).toString();
-              if (mcpServer.url.startsWith('/') && postUrl.startsWith('http')) {
+              // LOCAL PROXY REWRITE: If on localhost and using the Tailscale domain, use the proxy path
+              const isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+              if (isLocal && postUrl.includes('agentzero.tail335dec.ts.net')) {
                 const urlObj = new URL(postUrl);
                 postUrl = urlObj.pathname + urlObj.search;
               }
@@ -351,92 +354,118 @@ export const SettingsPanel: React.FC<SettingsPanelProps> = ({
   };
 
   const handleAddMcpServer = async () => {
-    let sseUrl = newMcpUrl.trim();
+    let inputUrl = newMcpUrl.trim();
 
-    if (!sseUrl) {
-      setMcpError("Please enter the MCP SSE URL.");
+    if (!inputUrl) {
+      setMcpError("Please enter the MCP URL.");
+      return;
+    }
+
+    // --- SMART AUTO-CLEAN (Fixes copy-paste errors) ---
+    if (inputUrl.includes("Access to resource at") || inputUrl.includes("blocked by CORS")) {
+      const match = inputUrl.match(/'(https?:\/\/[^']+)'/) || inputUrl.match(/(https?:\/\/[^\s]+)/);
+      if (match) {
+        console.log("Detected error message in input, extracting URL:", match[1]);
+        inputUrl = match[1];
+        setNewMcpUrl(inputUrl);
+      }
+    }
+
+    // --- PRODUCTION VALIDATION ---
+    const isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+    if (!isLocal && !inputUrl.startsWith('http')) {
+      setMcpError("On GitHub Pages, you must use a FULL URL (starting with https://). Relative paths only work on localhost.");
       return;
     }
 
     setMcpLoading(true);
     setMcpError('');
 
-    // --- PROXY AUTO-DETECTION ---
-    const PROXY_TARGET = 'https://agentzero.tail335dec.ts.net';
-    if (sseUrl.startsWith(PROXY_TARGET)) {
-      console.log("Detected Tailscale URL, rewriting to proxy path to bypass CORS.");
-      sseUrl = sseUrl.replace(PROXY_TARGET, '');
-      if (!sseUrl.startsWith('/')) sseUrl = '/' + sseUrl;
+    // --- PROXY AUTO-DETECTION (Local Dev Only) ---
+    if (isLocal && inputUrl.includes('agentzero.tail335dec.ts.net')) {
+      console.log("Local development detected: Rewriting URL to use Vite proxy.");
+      try {
+        const urlObj = new URL(inputUrl);
+        inputUrl = urlObj.pathname + urlObj.search;
+        if (!inputUrl.startsWith('/')) inputUrl = '/' + inputUrl;
+      } catch (e) { }
     }
 
     let eventSource: EventSource | null = null;
-    let initController: AbortController | null = null;
+    const isSse = inputUrl.includes('/sse');
+    let postEndpoint = inputUrl;
+
+    const mcpResponses = new Map<number, any>();
+    const mcpWaiters = new Map<number, { resolve: (data: any) => void, reject: (e: Error) => void, timer: number }>();
 
     try {
-      // --- 1. PROTOCOL DISCOVERY & SSE OPEN ---
-      const discovery = await new Promise<{ postUrl: string, es: EventSource }>((resolve, reject) => {
-        const timeout = setTimeout(() => {
-          if (es) es.close();
-          reject(new Error("Timeout waiting for 'endpoint' event (30s). Check if the server is starting up."));
-        }, 30000); // 30 seconds timeout for discovery
+      if (isSse) {
+        // --- 1. PROTOCOL DISCOVERY & SSE OPEN ---
+        const discovery = await new Promise<{ postUrl: string, es: EventSource }>((resolve, reject) => {
+          const timeout = setTimeout(() => {
+            if (es) es.close();
+            reject(new Error("Timeout waiting for 'endpoint' event (30s). Check if the server is starting up."));
+          }, 30000);
 
-        let es: EventSource | null = null;
-        try {
-          es = new EventSource(sseUrl, { withCredentials: mcpUseCredentials });
-          es.onopen = () => console.log("SSE Connection Opened.");
-          es.onerror = (e) => {
-            clearTimeout(timeout);
-            reject(new Error("EventSource connection error. Ensure the URL is correct and the server is reachable."));
-          };
+          let es: EventSource | null = null;
+          try {
+            es = new EventSource(inputUrl, { withCredentials: mcpUseCredentials });
+            es.onopen = () => console.log("SSE Connection Opened.");
+            es.onerror = (e) => {
+              clearTimeout(timeout);
+              reject(new Error("EventSource connection error. Ensure the URL is correct and the server is reachable."));
+            };
 
-          es.addEventListener('endpoint', (event) => {
-            clearTimeout(timeout);
-            try {
-              const base = new URL(sseUrl, window.location.href);
-              let postUrl = new URL(event.data, base).toString();
-              if (sseUrl.startsWith('/') && postUrl.startsWith('http')) {
-                const urlObj = new URL(postUrl);
-                postUrl = urlObj.pathname + urlObj.search;
+            es.addEventListener('endpoint', (event) => {
+              clearTimeout(timeout);
+              try {
+                const base = new URL(inputUrl, window.location.href);
+                let discovered = new URL(event.data, base).toString();
+                // LOCAL PROXY REWRITE
+                const isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+                if (isLocal && discovered.includes('agentzero.tail335dec.ts.net')) {
+                  const urlObj = new URL(discovered);
+                  discovered = urlObj.pathname + urlObj.search;
+                }
+                resolve({ postUrl: discovered, es: es! });
+              } catch (e) {
+                reject(new Error("Invalid endpoint URL from server."));
               }
-              resolve({ postUrl, es: es! });
-            } catch (e) {
-              reject(new Error("Invalid endpoint URL from server."));
-            }
-          });
-        } catch (e: any) {
-        }
-      });
-
-      eventSource = discovery.es;
-      const postEndpoint = discovery.postUrl;
-      console.log("[Handshake] Discovery Successful. POST URL:", postEndpoint);
-
-      // --- MESSAGE TRACKER (Prevents missing async responses) ---
-      const mcpResponses = new Map<number, any>();
-      const mcpWaiters = new Map<number, { resolve: (data: any) => void, reject: (e: Error) => void, timer: number }>();
-
-      const sseListener = (ev: MessageEvent) => {
-        console.log(`[SSE Raw Message]`, ev.data);
-        try {
-          const data = JSON.parse(ev.data);
-          if (data.id !== undefined) {
-            const waiter = mcpWaiters.get(data.id);
-            if (waiter) {
-              clearTimeout(waiter.timer);
-              mcpWaiters.delete(data.id);
-              if (data.error) waiter.reject(new Error(`MCP Server Error: ${data.error.message || JSON.stringify(data.error)}`));
-              else waiter.resolve(data);
-            } else {
-              mcpResponses.set(data.id, data);
-            }
+            });
+          } catch (e: any) {
+            reject(e);
           }
-        } catch (e) {
-          console.warn("[SSE Warning] Non-JSON or malformed message:", ev.data);
-        }
-      };
-      eventSource.addEventListener('message', sseListener);
+        });
+
+        eventSource = discovery.es;
+        postEndpoint = discovery.postUrl;
+        console.log("[Handshake] Discovery Successful. POST URL:", postEndpoint);
+
+        // SSE Listener
+        eventSource.addEventListener('message', (ev) => {
+          try {
+            const data = JSON.parse(ev.data);
+            if (data.id !== undefined) {
+              const waiter = mcpWaiters.get(data.id);
+              if (waiter) {
+                clearTimeout(waiter.timer);
+                mcpWaiters.delete(data.id);
+                if (data.error) waiter.reject(new Error(`MCP Server Error: ${data.error.message || JSON.stringify(data.error)}`));
+                else waiter.resolve(data);
+              } else {
+                mcpResponses.set(data.id, data);
+              }
+            }
+          } catch (e) {
+            console.warn("[SSE Warning] Non-JSON message:", ev.data);
+          }
+        });
+      } else {
+        console.log("[Connection] Mode: Direct POST (A2A). Using URL:", postEndpoint);
+      }
 
       const waitForId = (id: number) => {
+        if (!isSse) return Promise.reject(new Error("waitForId called in Direct Mode"));
         const alreadyReceived = mcpResponses.get(id);
         if (alreadyReceived) {
           mcpResponses.delete(id);
@@ -456,9 +485,7 @@ export const SettingsPanel: React.FC<SettingsPanelProps> = ({
       // --- 2. HANDSHAKE (Initialize) ---
       const fetchOptions: RequestInit = {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
+        headers: { 'Content-Type': 'application/json' },
         credentials: mcpUseCredentials ? 'include' : 'same-origin',
       };
 
@@ -477,23 +504,26 @@ export const SettingsPanel: React.FC<SettingsPanelProps> = ({
       });
       console.log(`[Handshake] Initialize request status: ${initRes.status}`);
 
-      const initData = await waitForId(initId);
-      console.log("[Handshake] Step 1 COMPLETE. Received server capabilities.");
+      if (!initRes.ok) throw new Error(`Initialize failed: ${initRes.status}`);
 
-      await sleep(2000); // Wait 2s like the terminal script
+      if (isSse) {
+        await waitForId(initId);
+      } else {
+        const data = await initRes.json();
+        console.log("[Handshake] Direct Init Response:", data);
+      }
+      console.log("[Handshake] Step 1 COMPLETE.");
+
+      await sleep(1000);
 
       // Step 2: Initialized notification
       console.log("[Handshake] Step 2: Sending 'notifications/initialized'...");
-      const notifRes = await fetch(postEndpoint, {
+      await fetch(postEndpoint, {
         ...fetchOptions,
-        body: JSON.stringify({
-          jsonrpc: "2.0",
-          method: "notifications/initialized"
-        })
+        body: JSON.stringify({ jsonrpc: "2.0", method: "notifications/initialized" })
       });
-      console.log(`[Handshake] Notification status: ${notifRes.status}`);
 
-      await sleep(2000); // Wait 2s like the terminal script
+      await sleep(1000);
 
       // --- 3. FETCH TOOLS ---
       const toolsId = initId + 1;
@@ -502,19 +532,25 @@ export const SettingsPanel: React.FC<SettingsPanelProps> = ({
         ...fetchOptions,
         body: JSON.stringify({ jsonrpc: "2.0", method: "tools/list", id: toolsId, params: {} })
       });
-      console.log(`[Handshake] tools/list request status: ${toolsPostRes.status}`);
 
-      const toolsData = await waitForId(toolsId);
-      const toolsList = toolsData.result?.tools || [];
+      let toolsList: any[] = [];
+      if (isSse) {
+        const toolsData = await waitForId(toolsId);
+        toolsList = toolsData.result?.tools || [];
+      } else {
+        const toolsJson = await toolsPostRes.json();
+        toolsList = toolsJson.result?.tools || [];
+      }
+
       console.log(`[Handshake] SUCCESS! Found ${toolsList.length} tools.`);
 
       const convertedTools = toolsList.map(convertMcpToolToGemini);
 
       const newServer: McpServer = {
         id: Date.now().toString(),
-        url: sseUrl,
+        url: inputUrl,
         postUrl: postEndpoint,
-        name: `Agent Zero (${toolsList.length} tools)`,
+        name: `Agent Zero (${toolsList.length} tools) [${isSse ? 'SSE' : 'A2A'}]`,
         status: 'connected',
         tools: convertedTools,
         useCredentials: mcpUseCredentials,
@@ -525,7 +561,7 @@ export const SettingsPanel: React.FC<SettingsPanelProps> = ({
       if (eventSource) eventSource.close();
 
     } catch (e: any) {
-      console.error("MCP Connection Failed", e);
+      console.error("Connection Failed", e);
       setMcpError(e.message);
       if (eventSource) eventSource.close();
     } finally {
@@ -617,6 +653,22 @@ export const SettingsPanel: React.FC<SettingsPanelProps> = ({
           </header>
 
           <main className="flex-1 p-6 space-y-8 overflow-y-auto">
+            {/* --- API Key Settings --- */}
+            <div className="space-y-4 pt-4 border-t border-gray-200">
+              <h3 className="text-lg font-semibold text-gray-700 text-red-600">Gemini API Key</h3>
+              <div className="space-y-2">
+                <label htmlFor="api-key" className="block text-sm font-medium text-gray-600">Enter your Google Gemini API Key</label>
+                <input
+                  id="api-key"
+                  type="password"
+                  value={settings.apiKey}
+                  onChange={(e) => setSettings({ ...settings, apiKey: e.target.value })}
+                  placeholder="ghp_... (Wait, no, it should be the Google API key)"
+                  className="w-full p-2 border border-blue-400 rounded-md shadow-sm focus:ring-black focus:border-black bg-blue-50"
+                />
+                <p className="text-xs text-blue-700"> Get one at <a href="https://aistudio.google.com/app/apikey" target="_blank" className="underline">AI Studio</a>. Settings are saved locally.</p>
+              </div>
+            </div>
 
             {/* --- Voice Settings --- */}
             <div className="space-y-4 pt-4 border-t border-gray-200">
@@ -706,9 +758,10 @@ export const SettingsPanel: React.FC<SettingsPanelProps> = ({
                   <div className="mt-3 text-xs text-gray-700 bg-white p-2 rounded border border-gray-200">
                     <p className="font-semibold mb-1"> Troubleshooting:</p>
                     <ul className="list-disc pl-4 space-y-1">
-                      <li>If using <strong>Tailscale</strong>, try opening the URL in a new tab first to authenticate.</li>
-                      <li>Ensure you copied the <strong>entire</strong> URL from Agent Zero.</li>
-                      <li><strong>Critical:</strong> Ensure your Agent Zero server allows CORS. Check that <code>CORS_ORIGINS=*</code> (or includes your web app URL) is set in your server's .env file.</li>
+                      <li><strong>GitHub Pages:</strong> Unlike your local computer, GitHub doesn't have a "proxy". Your Agent Zero server <strong>must</strong> allow requests from <code>https://mateorey22.github.io</code>.</li>
+                      <li><strong>Action:</strong> In your Agent Zero <code>.env</code> file, set <code>CORS_ORIGINS=https://mateorey22.github.io</code> (or <code>*</code>).</li>
+                      <li><strong>Private Network:</strong> Since you're on HTTPS (GitHub), Chrome might block "Private" (Tailscale) IPs. Look for a "Blocked insecure content" icon in the address bar and allow it.</li>
+                      <li>If using <strong>Tailscale</strong>, ensure you are logged in on this browser.</li>
                     </ul>
                   </div>
                 </div>

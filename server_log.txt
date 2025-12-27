@@ -21,3 +21,249 @@
   ➜  Network: http://192.168.1.112:3000/geminilive/
   ➜  Network: http://100.95.196.123:3000/geminilive/
 12:36:38 PM [vite] (client) page reload dist/index.html
+12:44:34 PM [vite] (client) page reload dist/index.html
+12:44:34 PM [vite] (client) page reload dist/index.html
+12:44:34 PM [vite] (client) page reload dist/index.html
+12:45:40 PM [vite] (client) page reload dist/index.html
+12:45:40 PM [vite] (client) page reload dist/index.html
+12:47:38 PM [vite] (client) page reload index.html
+12:47:47 PM [vite] (client) page reload dist/index.html
+12:47:47 PM [vite] (client) page reload dist/index.html
+12:48:37 PM [vite] (client) page reload dist/index.html
+12:48:37 PM [vite] (client) page reload dist/index.html
+12:49:25 PM [vite] (client) page reload dist/index.html
+12:49:25 PM [vite] (client) page reload dist/index.html
+12:50:55 PM [vite] (client) page reload index.html
+12:55:30 PM [vite] (client) hmr update /App.tsx, /components/ImmersiveVisualizer.tsx
+12:55:37 PM [vite] (client) hmr update /components/SettingsPanel.tsx
+12:55:44 PM [vite] (client) hmr update /App.tsx
+12:55:56 PM [vite] (client) page reload index.html
+12:56:14 PM [vite] (client) page reload dist/index.html
+12:56:14 PM [vite] (client) page reload dist/index.html
+1:21:59 PM [vite] (client) hmr update /components/SettingsPanel.tsx
+1:22:08 PM [vite] (client) page reload dist/index.html
+1:22:08 PM [vite] (client) page reload dist/index.html
+1:22:08 PM [vite] (client) page reload dist/index.html
+1:25:08 PM [vite] (client) page reload dist/index.html
+1:25:08 PM [vite] (client) page reload dist/index.html
+1:25:08 PM [vite] (client) page reload dist/index.html
+1:26:53 PM [vite] (client) hmr update /components/SettingsPanel.tsx
+1:27:00 PM [vite] (client) page reload dist/index.html
+1:27:01 PM [vite] (client) page reload dist/index.html
+1:27:01 PM [vite] (client) page reload dist/index.html
+1:28:19 PM [vite] (client) hmr update /components/SettingsPanel.tsx
+1:30:10 PM [vite] (client) page reload dist/index.html
+1:30:10 PM [vite] (client) page reload dist/index.html
+1:32:50 PM [vite] (client) hmr update /components/SettingsPanel.tsx
+1:32:58 PM [vite] (client) page reload dist/index.html
+1:32:58 PM [vite] (client) page reload dist/index.html
+1:36:24 PM [vite] (client) page reload dist/index.html
+1:36:24 PM [vite] (client) page reload dist/index.html
+1:38:55 PM [vite] (client) hmr update /components/SettingsPanel.tsx
+1:38:55 PM [vite] Internal server error: /home/mateo/Downloads/gemini-live-conversation (6)/components/SettingsPanel.tsx: Identifier 'isLocal' has already been declared. (386:10)
+
+  384 |
+  385 |     // --- PROXY AUTO-DETECTION (Local Dev Only) ---
+> 386 |     const isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+      |           ^
+  387 |     if (isLocal && sseUrl.includes('agentzero.tail335dec.ts.net')) {
+  388 |       console.log("Local development detected: Rewriting URL to use Vite proxy.");
+  389 |       try {
+  Plugin: vite:react-babel
+  File: /home/mateo/Downloads/gemini-live-conversation (6)/components/SettingsPanel.tsx:386:10
+  384|  
+  385|      // --- PROXY AUTO-DETECTION (Local Dev Only) ---
+  386|      const isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+     |            ^
+  387|      if (isLocal && sseUrl.includes('agentzero.tail335dec.ts.net')) {
+  388|        console.log("Local development detected: Rewriting URL to use Vite proxy.");
+      at constructor (/home/mateo/Downloads/gemini-live-conversation (6)/node_modules/@babel/parser/lib/index.js:367:19)
+      at TypeScriptParserMixin.raise (/home/mateo/Downloads/gemini-live-conversation (6)/node_modules/@babel/parser/lib/index.js:6624:19)
+      at TypeScriptScopeHandler.checkRedeclarationInScope (/home/mateo/Downloads/gemini-live-conversation (6)/node_modules/@babel/parser/lib/index.js:1646:19)
+      at TypeScriptScopeHandler.declareName (/home/mateo/Downloads/gemini-live-conversation (6)/node_modules/@babel/parser/lib/index.js:1612:12)
+      at TypeScriptScopeHandler.declareName (/home/mateo/Downloads/gemini-live-conversation (6)/node_modules/@babel/parser/lib/index.js:4909:11)
+      at TypeScriptParserMixin.declareNameFromIdentifier (/home/mateo/Downloads/gemini-live-conversation (6)/node_modules/@babel/parser/lib/index.js:7594:16)
+      at TypeScriptParserMixin.checkIdentifier (/home/mateo/Downloads/gemini-live-conversation (6)/node_modules/@babel/parser/lib/index.js:7590:12)
+      at TypeScriptParserMixin.checkLVal (/home/mateo/Downloads/gemini-live-conversation (6)/node_modules/@babel/parser/lib/index.js:7527:12)
+      at TypeScriptParserMixin.parseVarId (/home/mateo/Downloads/gemini-live-conversation (6)/node_modules/@babel/parser/lib/index.js:13488:10)
+      at TypeScriptParserMixin.parseVarId (/home/mateo/Downloads/gemini-live-conversation (6)/node_modules/@babel/parser/lib/index.js:9805:11)
+      at TypeScriptParserMixin.parseVar (/home/mateo/Downloads/gemini-live-conversation (6)/node_modules/@babel/parser/lib/index.js:13459:12)
+      at TypeScriptParserMixin.parseVarStatement (/home/mateo/Downloads/gemini-live-conversation (6)/node_modules/@babel/parser/lib/index.js:13306:10)
+      at TypeScriptParserMixin.parseVarStatement (/home/mateo/Downloads/gemini-live-conversation (6)/node_modules/@babel/parser/lib/index.js:9469:31)
+      at TypeScriptParserMixin.parseStatementContent (/home/mateo/Downloads/gemini-live-conversation (6)/node_modules/@babel/parser/lib/index.js:12927:23)
+      at TypeScriptParserMixin.parseStatementContent (/home/mateo/Downloads/gemini-live-conversation (6)/node_modules/@babel/parser/lib/index.js:9569:18)
+      at TypeScriptParserMixin.parseStatementLike (/home/mateo/Downloads/gemini-live-conversation (6)/node_modules/@babel/parser/lib/index.js:12843:17)
+      at TypeScriptParserMixin.parseStatementListItem (/home/mateo/Downloads/gemini-live-conversation (6)/node_modules/@babel/parser/lib/index.js:12823:17)
+      at TypeScriptParserMixin.parseBlockOrModuleBlockBody (/home/mateo/Downloads/gemini-live-conversation (6)/node_modules/@babel/parser/lib/index.js:13392:61)
+      at TypeScriptParserMixin.parseBlockBody (/home/mateo/Downloads/gemini-live-conversation (6)/node_modules/@babel/parser/lib/index.js:13385:10)
+      at TypeScriptParserMixin.parseBlock (/home/mateo/Downloads/gemini-live-conversation (6)/node_modules/@babel/parser/lib/index.js:13373:10)
+      at TypeScriptParserMixin.parseFunctionBody (/home/mateo/Downloads/gemini-live-conversation (6)/node_modules/@babel/parser/lib/index.js:12174:24)
+      at TypeScriptParserMixin.parseArrowExpression (/home/mateo/Downloads/gemini-live-conversation (6)/node_modules/@babel/parser/lib/index.js:12149:10)
+      at TypeScriptParserMixin.parseAsyncArrowFromCallExpression (/home/mateo/Downloads/gemini-live-conversation (6)/node_modules/@babel/parser/lib/index.js:11328:10)
+      at TypeScriptParserMixin.parseAsyncArrowFromCallExpression (/home/mateo/Downloads/gemini-live-conversation (6)/node_modules/@babel/parser/lib/index.js:9819:18)
+      at TypeScriptParserMixin.parseCoverCallAndAsyncArrowHead (/home/mateo/Downloads/gemini-live-conversation (6)/node_modules/@babel/parser/lib/index.js:11258:27)
+      at TypeScriptParserMixin.parseSubscript (/home/mateo/Downloads/gemini-live-conversation (6)/node_modules/@babel/parser/lib/index.js:11184:19)
+      at TypeScriptParserMixin.parseSubscript (/home/mateo/Downloads/gemini-live-conversation (6)/node_modules/@babel/parser/lib/index.js:9329:18)
+      at TypeScriptParserMixin.parseSubscripts (/home/mateo/Downloads/gemini-live-conversation (6)/node_modules/@babel/parser/lib/index.js:11158:19)
+      at TypeScriptParserMixin.parseExprSubscripts (/home/mateo/Downloads/gemini-live-conversation (6)/node_modules/@babel/parser/lib/index.js:11149:17)
+      at TypeScriptParserMixin.parseUpdate (/home/mateo/Downloads/gemini-live-conversation (6)/node_modules/@babel/parser/lib/index.js:11130:21)
+      at TypeScriptParserMixin.parseMaybeUnary (/home/mateo/Downloads/gemini-live-conversation (6)/node_modules/@babel/parser/lib/index.js:11110:23)
+      at TypeScriptParserMixin.parseMaybeUnary (/home/mateo/Downloads/gemini-live-conversation (6)/node_modules/@babel/parser/lib/index.js:9890:18)
+      at TypeScriptParserMixin.parseMaybeUnaryOrPrivate (/home/mateo/Downloads/gemini-live-conversation (6)/node_modules/@babel/parser/lib/index.js:10963:61)
+      at TypeScriptParserMixin.parseExprOps (/home/mateo/Downloads/gemini-live-conversation (6)/node_modules/@babel/parser/lib/index.js:10968:23)
+      at TypeScriptParserMixin.parseMaybeConditional (/home/mateo/Downloads/gemini-live-conversation (6)/node_modules/@babel/parser/lib/index.js:10945:23)
+      at TypeScriptParserMixin.parseMaybeAssign (/home/mateo/Downloads/gemini-live-conversation (6)/node_modules/@babel/parser/lib/index.js:10895:21)
+      at TypeScriptParserMixin.parseMaybeAssign (/home/mateo/Downloads/gemini-live-conversation (6)/node_modules/@babel/parser/lib/index.js:9839:20)
+      at /home/mateo/Downloads/gemini-live-conversation (6)/node_modules/@babel/parser/lib/index.js:10864:39
+      at TypeScriptParserMixin.allowInAnd (/home/mateo/Downloads/gemini-live-conversation (6)/node_modules/@babel/parser/lib/index.js:12495:16)
+      at TypeScriptParserMixin.parseMaybeAssignAllowIn (/home/mateo/Downloads/gemini-live-conversation (6)/node_modules/@babel/parser/lib/index.js:10864:17)
+      at TypeScriptParserMixin.parseVar (/home/mateo/Downloads/gemini-live-conversation (6)/node_modules/@babel/parser/lib/index.js:13460:91)
+      at TypeScriptParserMixin.parseVarStatement (/home/mateo/Downloads/gemini-live-conversation (6)/node_modules/@babel/parser/lib/index.js:13306:10)
+      at TypeScriptParserMixin.parseVarStatement (/home/mateo/Downloads/gemini-live-conversation (6)/node_modules/@babel/parser/lib/index.js:9469:31)
+      at TypeScriptParserMixin.parseStatementContent (/home/mateo/Downloads/gemini-live-conversation (6)/node_modules/@babel/parser/lib/index.js:12927:23)
+      at TypeScriptParserMixin.parseStatementContent (/home/mateo/Downloads/gemini-live-conversation (6)/node_modules/@babel/parser/lib/index.js:9569:18)
+      at TypeScriptParserMixin.parseStatementLike (/home/mateo/Downloads/gemini-live-conversation (6)/node_modules/@babel/parser/lib/index.js:12843:17)
+      at TypeScriptParserMixin.parseStatementListItem (/home/mateo/Downloads/gemini-live-conversation (6)/node_modules/@babel/parser/lib/index.js:12823:17)
+      at TypeScriptParserMixin.parseBlockOrModuleBlockBody (/home/mateo/Downloads/gemini-live-conversation (6)/node_modules/@babel/parser/lib/index.js:13392:61)
+      at TypeScriptParserMixin.parseBlockBody (/home/mateo/Downloads/gemini-live-conversation (6)/node_modules/@babel/parser/lib/index.js:13385:10)
+      at TypeScriptParserMixin.parseBlock (/home/mateo/Downloads/gemini-live-conversation (6)/node_modules/@babel/parser/lib/index.js:13373:10)
+1:39:03 PM [vite] (client) hmr update /components/SettingsPanel.tsx
+1:39:03 PM [vite] Internal server error: /home/mateo/Downloads/gemini-live-conversation (6)/components/SettingsPanel.tsx: Unexpected reserved word 'await'. (400:22)
+
+  398 |   try {
+  399 |     // --- 1. PROTOCOL DISCOVERY & SSE OPEN ---
+> 400 |     const discovery = await new Promise<{ postUrl: string, es: EventSource }>((resolve, reject) => {
+      |                       ^
+  401 |       const timeout = setTimeout(() => {
+  402 |         if (es) es.close();
+  403 |         reject(new Error("Timeout waiting for 'endpoint' event (30s). Check if the server is starting up."));
+  Plugin: vite:react-babel
+  File: /home/mateo/Downloads/gemini-live-conversation (6)/components/SettingsPanel.tsx:400:22
+  398|    try {
+  399|      // --- 1. PROTOCOL DISCOVERY & SSE OPEN ---
+  400|      const discovery = await new Promise<{ postUrl: string, es: EventSource }>((resolve, reject) => {
+     |                        ^
+  401|        const timeout = setTimeout(() => {
+  402|          if (es) es.close();
+      at constructor (/home/mateo/Downloads/gemini-live-conversation (6)/node_modules/@babel/parser/lib/index.js:367:19)
+      at TypeScriptParserMixin.raise (/home/mateo/Downloads/gemini-live-conversation (6)/node_modules/@babel/parser/lib/index.js:6624:19)
+      at TypeScriptParserMixin.checkReservedWord (/home/mateo/Downloads/gemini-live-conversation (6)/node_modules/@babel/parser/lib/index.js:12305:12)
+      at TypeScriptParserMixin.checkReservedWord (/home/mateo/Downloads/gemini-live-conversation (6)/node_modules/@babel/parser/lib/index.js:9369:13)
+      at TypeScriptParserMixin.parseIdentifierName (/home/mateo/Downloads/gemini-live-conversation (6)/node_modules/@babel/parser/lib/index.js:12285:12)
+      at TypeScriptParserMixin.parseIdentifier (/home/mateo/Downloads/gemini-live-conversation (6)/node_modules/@babel/parser/lib/index.js:12255:23)
+      at TypeScriptParserMixin.parseExprAtom (/home/mateo/Downloads/gemini-live-conversation (6)/node_modules/@babel/parser/lib/index.js:11482:27)
+      at TypeScriptParserMixin.parseExprAtom (/home/mateo/Downloads/gemini-live-conversation (6)/node_modules/@babel/parser/lib/index.js:4793:20)
+      at TypeScriptParserMixin.parseExprSubscripts (/home/mateo/Downloads/gemini-live-conversation (6)/node_modules/@babel/parser/lib/index.js:11145:23)
+      at TypeScriptParserMixin.parseUpdate (/home/mateo/Downloads/gemini-live-conversation (6)/node_modules/@babel/parser/lib/index.js:11130:21)
+      at TypeScriptParserMixin.parseMaybeUnary (/home/mateo/Downloads/gemini-live-conversation (6)/node_modules/@babel/parser/lib/index.js:11110:23)
+      at TypeScriptParserMixin.parseMaybeUnary (/home/mateo/Downloads/gemini-live-conversation (6)/node_modules/@babel/parser/lib/index.js:9890:18)
+      at TypeScriptParserMixin.parseMaybeUnaryOrPrivate (/home/mateo/Downloads/gemini-live-conversation (6)/node_modules/@babel/parser/lib/index.js:10963:61)
+      at TypeScriptParserMixin.parseExprOps (/home/mateo/Downloads/gemini-live-conversation (6)/node_modules/@babel/parser/lib/index.js:10968:23)
+      at TypeScriptParserMixin.parseMaybeConditional (/home/mateo/Downloads/gemini-live-conversation (6)/node_modules/@babel/parser/lib/index.js:10945:23)
+      at TypeScriptParserMixin.parseMaybeAssign (/home/mateo/Downloads/gemini-live-conversation (6)/node_modules/@babel/parser/lib/index.js:10895:21)
+      at TypeScriptParserMixin.parseMaybeAssign (/home/mateo/Downloads/gemini-live-conversation (6)/node_modules/@babel/parser/lib/index.js:9839:20)
+      at /home/mateo/Downloads/gemini-live-conversation (6)/node_modules/@babel/parser/lib/index.js:10864:39
+      at TypeScriptParserMixin.allowInAnd (/home/mateo/Downloads/gemini-live-conversation (6)/node_modules/@babel/parser/lib/index.js:12495:16)
+      at TypeScriptParserMixin.parseMaybeAssignAllowIn (/home/mateo/Downloads/gemini-live-conversation (6)/node_modules/@babel/parser/lib/index.js:10864:17)
+      at TypeScriptParserMixin.parseVar (/home/mateo/Downloads/gemini-live-conversation (6)/node_modules/@babel/parser/lib/index.js:13460:91)
+      at TypeScriptParserMixin.parseVarStatement (/home/mateo/Downloads/gemini-live-conversation (6)/node_modules/@babel/parser/lib/index.js:13306:10)
+      at TypeScriptParserMixin.parseVarStatement (/home/mateo/Downloads/gemini-live-conversation (6)/node_modules/@babel/parser/lib/index.js:9469:31)
+      at TypeScriptParserMixin.parseStatementContent (/home/mateo/Downloads/gemini-live-conversation (6)/node_modules/@babel/parser/lib/index.js:12927:23)
+      at TypeScriptParserMixin.parseStatementContent (/home/mateo/Downloads/gemini-live-conversation (6)/node_modules/@babel/parser/lib/index.js:9569:18)
+      at TypeScriptParserMixin.parseStatementLike (/home/mateo/Downloads/gemini-live-conversation (6)/node_modules/@babel/parser/lib/index.js:12843:17)
+      at TypeScriptParserMixin.parseStatementListItem (/home/mateo/Downloads/gemini-live-conversation (6)/node_modules/@babel/parser/lib/index.js:12823:17)
+      at TypeScriptParserMixin.parseBlockOrModuleBlockBody (/home/mateo/Downloads/gemini-live-conversation (6)/node_modules/@babel/parser/lib/index.js:13392:61)
+      at TypeScriptParserMixin.parseBlockBody (/home/mateo/Downloads/gemini-live-conversation (6)/node_modules/@babel/parser/lib/index.js:13385:10)
+      at TypeScriptParserMixin.parseBlock (/home/mateo/Downloads/gemini-live-conversation (6)/node_modules/@babel/parser/lib/index.js:13373:10)
+      at TypeScriptParserMixin.parseTryStatement (/home/mateo/Downloads/gemini-live-conversation (6)/node_modules/@babel/parser/lib/index.js:13281:23)
+      at TypeScriptParserMixin.parseStatementContent (/home/mateo/Downloads/gemini-live-conversation (6)/node_modules/@babel/parser/lib/index.js:12880:21)
+      at TypeScriptParserMixin.parseStatementContent (/home/mateo/Downloads/gemini-live-conversation (6)/node_modules/@babel/parser/lib/index.js:9569:18)
+      at TypeScriptParserMixin.parseStatementLike (/home/mateo/Downloads/gemini-live-conversation (6)/node_modules/@babel/parser/lib/index.js:12843:17)
+      at TypeScriptParserMixin.parseStatementListItem (/home/mateo/Downloads/gemini-live-conversation (6)/node_modules/@babel/parser/lib/index.js:12823:17)
+      at TypeScriptParserMixin.parseBlockOrModuleBlockBody (/home/mateo/Downloads/gemini-live-conversation (6)/node_modules/@babel/parser/lib/index.js:13392:61)
+      at TypeScriptParserMixin.parseBlockBody (/home/mateo/Downloads/gemini-live-conversation (6)/node_modules/@babel/parser/lib/index.js:13385:10)
+      at TypeScriptParserMixin.parseBlock (/home/mateo/Downloads/gemini-live-conversation (6)/node_modules/@babel/parser/lib/index.js:13373:10)
+      at TypeScriptParserMixin.parseFunctionBody (/home/mateo/Downloads/gemini-live-conversation (6)/node_modules/@babel/parser/lib/index.js:12174:24)
+      at TypeScriptParserMixin.parseArrowExpression (/home/mateo/Downloads/gemini-live-conversation (6)/node_modules/@babel/parser/lib/index.js:12149:10)
+      at TypeScriptParserMixin.parseParenAndDistinguishExpression (/home/mateo/Downloads/gemini-live-conversation (6)/node_modules/@babel/parser/lib/index.js:11759:12)
+      at TypeScriptParserMixin.parseExprAtom (/home/mateo/Downloads/gemini-live-conversation (6)/node_modules/@babel/parser/lib/index.js:11395:23)
+      at TypeScriptParserMixin.parseExprAtom (/home/mateo/Downloads/gemini-live-conversation (6)/node_modules/@babel/parser/lib/index.js:4793:20)
+      at TypeScriptParserMixin.parseExprSubscripts (/home/mateo/Downloads/gemini-live-conversation (6)/node_modules/@babel/parser/lib/index.js:11145:23)
+      at TypeScriptParserMixin.parseUpdate (/home/mateo/Downloads/gemini-live-conversation (6)/node_modules/@babel/parser/lib/index.js:11130:21)
+      at TypeScriptParserMixin.parseMaybeUnary (/home/mateo/Downloads/gemini-live-conversation (6)/node_modules/@babel/parser/lib/index.js:11110:23)
+      at TypeScriptParserMixin.parseMaybeUnary (/home/mateo/Downloads/gemini-live-conversation (6)/node_modules/@babel/parser/lib/index.js:9890:18)
+      at TypeScriptParserMixin.parseMaybeUnaryOrPrivate (/home/mateo/Downloads/gemini-live-conversation (6)/node_modules/@babel/parser/lib/index.js:10963:61)
+      at TypeScriptParserMixin.parseExprOps (/home/mateo/Downloads/gemini-live-conversation (6)/node_modules/@babel/parser/lib/index.js:10968:23)
+      at TypeScriptParserMixin.parseMaybeConditional (/home/mateo/Downloads/gemini-live-conversation (6)/node_modules/@babel/parser/lib/index.js:10945:23)
+1:39:17 PM [vite] (client) hmr update /components/SettingsPanel.tsx
+1:39:17 PM [vite] Internal server error: /home/mateo/Downloads/gemini-live-conversation (6)/components/SettingsPanel.tsx: Identifier 'isLocal' has already been declared. (386:10)
+
+  384 |
+  385 |     // --- PROXY AUTO-DETECTION (Local Dev Only) ---
+> 386 |     const isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+      |           ^
+  387 |     if (isLocal && sseUrl.includes('agentzero.tail335dec.ts.net')) {
+  388 |       console.log("Local development detected: Rewriting URL to use Vite proxy.");
+  389 |       try {
+  Plugin: vite:react-babel
+  File: /home/mateo/Downloads/gemini-live-conversation (6)/components/SettingsPanel.tsx:386:10
+  384|  
+  385|      // --- PROXY AUTO-DETECTION (Local Dev Only) ---
+  386|      const isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+     |            ^
+  387|      if (isLocal && sseUrl.includes('agentzero.tail335dec.ts.net')) {
+  388|        console.log("Local development detected: Rewriting URL to use Vite proxy.");
+      at constructor (/home/mateo/Downloads/gemini-live-conversation (6)/node_modules/@babel/parser/lib/index.js:367:19)
+      at TypeScriptParserMixin.raise (/home/mateo/Downloads/gemini-live-conversation (6)/node_modules/@babel/parser/lib/index.js:6624:19)
+      at TypeScriptScopeHandler.checkRedeclarationInScope (/home/mateo/Downloads/gemini-live-conversation (6)/node_modules/@babel/parser/lib/index.js:1646:19)
+      at TypeScriptScopeHandler.declareName (/home/mateo/Downloads/gemini-live-conversation (6)/node_modules/@babel/parser/lib/index.js:1612:12)
+      at TypeScriptScopeHandler.declareName (/home/mateo/Downloads/gemini-live-conversation (6)/node_modules/@babel/parser/lib/index.js:4909:11)
+      at TypeScriptParserMixin.declareNameFromIdentifier (/home/mateo/Downloads/gemini-live-conversation (6)/node_modules/@babel/parser/lib/index.js:7594:16)
+      at TypeScriptParserMixin.checkIdentifier (/home/mateo/Downloads/gemini-live-conversation (6)/node_modules/@babel/parser/lib/index.js:7590:12)
+      at TypeScriptParserMixin.checkLVal (/home/mateo/Downloads/gemini-live-conversation (6)/node_modules/@babel/parser/lib/index.js:7527:12)
+      at TypeScriptParserMixin.parseVarId (/home/mateo/Downloads/gemini-live-conversation (6)/node_modules/@babel/parser/lib/index.js:13488:10)
+      at TypeScriptParserMixin.parseVarId (/home/mateo/Downloads/gemini-live-conversation (6)/node_modules/@babel/parser/lib/index.js:9805:11)
+      at TypeScriptParserMixin.parseVar (/home/mateo/Downloads/gemini-live-conversation (6)/node_modules/@babel/parser/lib/index.js:13459:12)
+      at TypeScriptParserMixin.parseVarStatement (/home/mateo/Downloads/gemini-live-conversation (6)/node_modules/@babel/parser/lib/index.js:13306:10)
+      at TypeScriptParserMixin.parseVarStatement (/home/mateo/Downloads/gemini-live-conversation (6)/node_modules/@babel/parser/lib/index.js:9469:31)
+      at TypeScriptParserMixin.parseStatementContent (/home/mateo/Downloads/gemini-live-conversation (6)/node_modules/@babel/parser/lib/index.js:12927:23)
+      at TypeScriptParserMixin.parseStatementContent (/home/mateo/Downloads/gemini-live-conversation (6)/node_modules/@babel/parser/lib/index.js:9569:18)
+      at TypeScriptParserMixin.parseStatementLike (/home/mateo/Downloads/gemini-live-conversation (6)/node_modules/@babel/parser/lib/index.js:12843:17)
+      at TypeScriptParserMixin.parseStatementListItem (/home/mateo/Downloads/gemini-live-conversation (6)/node_modules/@babel/parser/lib/index.js:12823:17)
+      at TypeScriptParserMixin.parseBlockOrModuleBlockBody (/home/mateo/Downloads/gemini-live-conversation (6)/node_modules/@babel/parser/lib/index.js:13392:61)
+      at TypeScriptParserMixin.parseBlockBody (/home/mateo/Downloads/gemini-live-conversation (6)/node_modules/@babel/parser/lib/index.js:13385:10)
+      at TypeScriptParserMixin.parseBlock (/home/mateo/Downloads/gemini-live-conversation (6)/node_modules/@babel/parser/lib/index.js:13373:10)
+      at TypeScriptParserMixin.parseFunctionBody (/home/mateo/Downloads/gemini-live-conversation (6)/node_modules/@babel/parser/lib/index.js:12174:24)
+      at TypeScriptParserMixin.parseArrowExpression (/home/mateo/Downloads/gemini-live-conversation (6)/node_modules/@babel/parser/lib/index.js:12149:10)
+      at TypeScriptParserMixin.parseAsyncArrowFromCallExpression (/home/mateo/Downloads/gemini-live-conversation (6)/node_modules/@babel/parser/lib/index.js:11328:10)
+      at TypeScriptParserMixin.parseAsyncArrowFromCallExpression (/home/mateo/Downloads/gemini-live-conversation (6)/node_modules/@babel/parser/lib/index.js:9819:18)
+      at TypeScriptParserMixin.parseCoverCallAndAsyncArrowHead (/home/mateo/Downloads/gemini-live-conversation (6)/node_modules/@babel/parser/lib/index.js:11258:27)
+      at TypeScriptParserMixin.parseSubscript (/home/mateo/Downloads/gemini-live-conversation (6)/node_modules/@babel/parser/lib/index.js:11184:19)
+      at TypeScriptParserMixin.parseSubscript (/home/mateo/Downloads/gemini-live-conversation (6)/node_modules/@babel/parser/lib/index.js:9329:18)
+      at TypeScriptParserMixin.parseSubscripts (/home/mateo/Downloads/gemini-live-conversation (6)/node_modules/@babel/parser/lib/index.js:11158:19)
+      at TypeScriptParserMixin.parseExprSubscripts (/home/mateo/Downloads/gemini-live-conversation (6)/node_modules/@babel/parser/lib/index.js:11149:17)
+      at TypeScriptParserMixin.parseUpdate (/home/mateo/Downloads/gemini-live-conversation (6)/node_modules/@babel/parser/lib/index.js:11130:21)
+      at TypeScriptParserMixin.parseMaybeUnary (/home/mateo/Downloads/gemini-live-conversation (6)/node_modules/@babel/parser/lib/index.js:11110:23)
+      at TypeScriptParserMixin.parseMaybeUnary (/home/mateo/Downloads/gemini-live-conversation (6)/node_modules/@babel/parser/lib/index.js:9890:18)
+      at TypeScriptParserMixin.parseMaybeUnaryOrPrivate (/home/mateo/Downloads/gemini-live-conversation (6)/node_modules/@babel/parser/lib/index.js:10963:61)
+      at TypeScriptParserMixin.parseExprOps (/home/mateo/Downloads/gemini-live-conversation (6)/node_modules/@babel/parser/lib/index.js:10968:23)
+      at TypeScriptParserMixin.parseMaybeConditional (/home/mateo/Downloads/gemini-live-conversation (6)/node_modules/@babel/parser/lib/index.js:10945:23)
+      at TypeScriptParserMixin.parseMaybeAssign (/home/mateo/Downloads/gemini-live-conversation (6)/node_modules/@babel/parser/lib/index.js:10895:21)
+      at TypeScriptParserMixin.parseMaybeAssign (/home/mateo/Downloads/gemini-live-conversation (6)/node_modules/@babel/parser/lib/index.js:9839:20)
+      at /home/mateo/Downloads/gemini-live-conversation (6)/node_modules/@babel/parser/lib/index.js:10864:39
+      at TypeScriptParserMixin.allowInAnd (/home/mateo/Downloads/gemini-live-conversation (6)/node_modules/@babel/parser/lib/index.js:12495:16)
+      at TypeScriptParserMixin.parseMaybeAssignAllowIn (/home/mateo/Downloads/gemini-live-conversation (6)/node_modules/@babel/parser/lib/index.js:10864:17)
+      at TypeScriptParserMixin.parseVar (/home/mateo/Downloads/gemini-live-conversation (6)/node_modules/@babel/parser/lib/index.js:13460:91)
+      at TypeScriptParserMixin.parseVarStatement (/home/mateo/Downloads/gemini-live-conversation (6)/node_modules/@babel/parser/lib/index.js:13306:10)
+      at TypeScriptParserMixin.parseVarStatement (/home/mateo/Downloads/gemini-live-conversation (6)/node_modules/@babel/parser/lib/index.js:9469:31)
+      at TypeScriptParserMixin.parseStatementContent (/home/mateo/Downloads/gemini-live-conversation (6)/node_modules/@babel/parser/lib/index.js:12927:23)
+      at TypeScriptParserMixin.parseStatementContent (/home/mateo/Downloads/gemini-live-conversation (6)/node_modules/@babel/parser/lib/index.js:9569:18)
+      at TypeScriptParserMixin.parseStatementLike (/home/mateo/Downloads/gemini-live-conversation (6)/node_modules/@babel/parser/lib/index.js:12843:17)
+      at TypeScriptParserMixin.parseStatementListItem (/home/mateo/Downloads/gemini-live-conversation (6)/node_modules/@babel/parser/lib/index.js:12823:17)
+      at TypeScriptParserMixin.parseBlockOrModuleBlockBody (/home/mateo/Downloads/gemini-live-conversation (6)/node_modules/@babel/parser/lib/index.js:13392:61)
+      at TypeScriptParserMixin.parseBlockBody (/home/mateo/Downloads/gemini-live-conversation (6)/node_modules/@babel/parser/lib/index.js:13385:10)
+      at TypeScriptParserMixin.parseBlock (/home/mateo/Downloads/gemini-live-conversation (6)/node_modules/@babel/parser/lib/index.js:13373:10)
+1:40:45 PM [vite] (client) hmr update /components/SettingsPanel.tsx
+1:40:54 PM [vite] (client) page reload dist/index.html
+1:40:54 PM [vite] (client) page reload dist/index.html
+1:40:54 PM [vite] (client) page reload dist/index.html

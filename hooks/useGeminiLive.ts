@@ -11,6 +11,7 @@ export enum ConversationState {
 }
 
 export interface ConversationSettings {
+  apiKey: string;
   voice: string;
   emotion: boolean;
   connections: Connection[];
@@ -235,7 +236,11 @@ export const useGeminiLive = () => {
     setErrorMessage(null);
 
     try {
-      const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+      const gApiKey = settings.apiKey || process.env.GEMINI_API_KEY || '';
+      if (!gApiKey) {
+        throw new Error('Gemini API Key is missing. Please enter it in Settings.');
+      }
+      const ai = new GoogleGenAI({ apiKey: gApiKey });
 
       inputAudioContextRef.current = new (window.AudioContext || (window as any).webkitAudioContext)({ sampleRate: 16000 });
       outputAudioContextRef.current = new (window.AudioContext || (window as any).webkitAudioContext)({ sampleRate: 24000 });

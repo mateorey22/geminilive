@@ -1,0 +1,25 @@
+total 152
+drwxr-xr-x. 1 mateo mateo   464 27 déc 12:49 .
+drwxr-xr-x. 1 mateo mateo 19914 27 déc 11:38 ..
+-rw-rw-r--. 1 mateo mateo  5243 27 déc 10:38 App.tsx
+drwxrwxr-x. 1 mateo mateo   112 27 déc 10:38 components
+-rw-r--r--. 1 mateo mateo  2892 27 déc 12:08 curl_err.txt
+-rw-r--r--. 1 mateo mateo     0 27 déc 12:08 curl_out.txt
+drwxr-xr-x. 1 mateo mateo    40 27 déc 12:49 dist
+-rw-rw-r--. 1 mateo mateo    35 27 déc 10:38 .env.local
+drwxr-xr-x. 1 mateo mateo   128 27 déc 12:42 .git
+-rw-rw-r--. 1 mateo mateo   253 27 déc 10:38 .gitignore
+drwxrwxr-x. 1 mateo mateo    32 27 déc 10:38 hooks
+-rw-rw-r--. 1 mateo mateo  2352 27 déc 12:47 index.html
+-rw-rw-r--. 1 mateo mateo   351 27 déc 10:38 index.tsx
+-rw-r--r--. 1 mateo mateo     0 27 déc 12:49 ls_debug.txt
+-rw-rw-r--. 1 mateo mateo   220 27 déc 10:38 metadata.json
+drwxr-xr-x. 1 mateo mateo  2180 27 déc 12:37 node_modules
+-rw-rw-r--. 1 mateo mateo   535 27 déc 10:38 package.json
+-rw-r--r--. 1 mateo mateo 89402 27 déc 11:40 package-lock.json
+-rw-rw-r--. 1 mateo mateo   553 27 déc 10:38 README.md
+-rw-r--r--. 1 mateo mateo  1602 27 déc 12:49 server_log.txt
+-rw-r--r--. 1 mateo mateo  2592 27 déc 12:06 test_mcp.py
+-rw-r--r--. 1 mateo mateo  5310 27 déc 12:22 test_out.txt
+-rw-rw-r--. 1 mateo mateo   542 27 déc 10:38 tsconfig.json
+-rw-rw-r--. 1 mateo mateo  1421 27 déc 12:36 vite.config.ts
