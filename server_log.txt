@@ -1,0 +1,23 @@
+
+> gemini-live-conversation@0.0.0 dev
+> vite
+
+
+  VITE v6.4.1  ready in 223 ms
+
+  ➜  Local:   http://localhost:3000/
+  ➜  Network: http://192.168.1.112:3000/
+  ➜  Network: http://100.95.196.123:3000/
+  ➜  press h + enter to show help
+12:27:12 PM [vite] (client) hmr update /components/SettingsPanel.tsx
+12:30:14 PM [vite] (client) hmr update /components/SettingsPanel.tsx
+12:30:20 PM [vite] (client) hmr update /App.tsx, /components/ImmersiveVisualizer.tsx
+12:30:40 PM [vite] (client) hmr update /App.tsx, /components/ImmersiveVisualizer.tsx
+12:32:36 PM [vite] (client) hmr update /components/SettingsPanel.tsx
+12:36:31 PM [vite] vite.config.ts changed, restarting server...
+12:36:32 PM [vite] server restarted.
+
+  ➜  Local:   http://localhost:3000/geminilive/
+  ➜  Network: http://192.168.1.112:3000/geminilive/
+  ➜  Network: http://100.95.196.123:3000/geminilive/
+12:36:38 PM [vite] (client) page reload dist/index.html

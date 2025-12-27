@@ -1,0 +1,8 @@
+{
+  "name": "Gemini Live Conversation",
+  "description": "A simple web app for a live voice conversation with Gemini. Tap the circle to start talking.",
+  "requestFramePermissions": [
+    "microphone",
+    "camera"
+  ]
+}

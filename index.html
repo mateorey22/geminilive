@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gemini Live Conversation</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            margin: 0;
+            font-family: sans-serif;
+            background-color: #000;
+        }
+        @keyframes breathing-hover {
+            0%, 100% { transform: translateY(-1.5%); }
+            50% { transform: translateY(1.5%); }
+        }
+        @keyframes surface-ripple-idle {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+            100% { transform: scale(1); }
+        }
+        @keyframes surface-ripple-active {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.04); }
+            100% { transform: scale(1); }
+        }
+        @keyframes satellite-tremble {
+            0% { transform: translate(0, 0) scale(1); }
+            25% { transform: translate(0.5px, -0.5px) scale(1.01); }
+            50% { transform: translate(-0.5px, 0.5px) scale(1); }
+            75% { transform: translate(-0.5px, -0.5px) scale(1.01); }
+            100% { transform: translate(0, 0) scale(1); }
+        }
+        @keyframes filament-pulse {
+            0%, 100% { stroke-width: 1.5; opacity: 0.6; }
+            50% { stroke-width: 3; opacity: 1; }
+        }
+        @keyframes emerge {
+            from { opacity: 0; transform: scale(0.5); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        @keyframes clarify {
+            0% { filter: brightness(0.8) blur(10px); opacity: 0.5;}
+            100% { filter: brightness(1) blur(0px); opacity: 1;}
+        }
+    </style>
+<link rel="stylesheet" href="/index.css">
+</head>
+<body>
+    <div id="root"></div>
+    <script type="importmap">
+{
+  "imports": {
+    "react": "https://aistudiocdn.com/react@^19.2.0",
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
+    "react/": "https://aistudiocdn.com/react@^19.2.0/",
+    "@google/genai": "https://aistudiocdn.com/@google/genai@^1.28.0",
+    "path": "https://esm.sh/path@^0.12.7",
+    "vite": "https://esm.sh/vite@^7.3.0",
+    "@vitejs/plugin-react": "https://esm.sh/@vitejs/plugin-react@^5.1.2"
+  }
+}
+</script>
+    <script type="module" src="/index.tsx"></script>
+</body>
+</html>
